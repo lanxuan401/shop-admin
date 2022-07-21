@@ -2,7 +2,7 @@
   <el-dropdown>
     <span class="el-dropdown-link">
       {{ $store.state.user?.account }}
-      <i class="el-icon-arrow-down el-icon--right" />
+      <el-icon><ArrowDown /></el-icon>
     </span>
     <template #dropdown>
       <el-dropdown-menu>
@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ElMessage, ElMessageBox } from 'element-plus'
+import { ElMessageBox, ElMessage } from 'element-plus'
 import { logout } from '@/api/common'
 import { useRouter } from 'vue-router'
 import { useStore } from '@/store'
@@ -24,36 +24,38 @@ import { useStore } from '@/store'
 const router = useRouter()
 const store = useStore()
 
-const handleLogou = () => {
+const handleLogou = async () => {
   // 退出提示
-  ElMessageBox.confirm('确认退出吗？', '退出提示', {
-    confirmButtonText: '确定',
-    cancelButtonText: '取消',
-    type: 'warning'
-  }).then(async () => {
-    // 确认发出退出请求
-    await logout()
-
-    // 清除用户登录信息
-    store.commit('setUser', null)
-
-    ElMessage({
-      type: 'success',
-      message: '退出成功!'
+  ElMessageBox.confirm(
+    '确认退出吗?',
+    'Warning',
+    {
+      confirmButtonText: 'OK',
+      cancelButtonText: 'Cancel',
+      type: 'warning'
+    }
+  )
+    .then(async () => {
+      // 确认发出退出请求
+      await logout()
+      // 跳到登录页
+      router.push({
+        name: 'login'
+      })
+      // 清除用户登录信息
+      store.commit('setUser', null)
+      ElMessage({
+        type: 'success',
+        message: 'Delete completed'
+      })
     })
-
-    // 跳转到登录页
-    router.push({
-      name: 'login'
+    .catch(() => {
+      ElMessage({
+        type: 'info',
+        message: 'Delete canceled'
+      })
     })
-  }).catch(() => {
-    ElMessage({
-      type: 'info',
-      message: '已取消退出'
-    })
-  })
 }
-
 </script>
 
 <style lang="scss" scoped></style>

@@ -32,20 +32,20 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
-import { getMenus } from '@/api/home'
+// import { getMenus } from '@/api/home'
 import type { Menu } from '@/api/types/home'
 
 const menus = ref<Menu[]>([])
 const state1 = ref('')
 
 onMounted(() => {
-  loadMenus()
+  // loadMenus()
 })
 
-const loadMenus = async () => {
-  const data = await getMenus()
-  menus.value = data
-}
+// const loadMenus = async () => {
+//   const data = await getMenus()
+//   menus.value = data
+// }
 
 const querySearch = (queryString: string, cb: (val: any) => void) => {
   console.log('querySearch', queryString)

@@ -1,8 +1,8 @@
 export interface ILoginInfo {
-    logo_square: string
-    logo_rectangle:string
-    login_logo: string
-    slide: string[]
+  logo_square: string
+  logo_rectangle: string
+  login_logo: string
+  slide: string[]
 }
 
 export interface IUserInfo {
@@ -18,4 +18,16 @@ export interface IMenu {
   header: string
   is_header: number
   children?: IMenu[]
+}
+
+export interface ILoginResponse {
+  token: string
+  expires_time: number
+  menus: IMenu[]
+  unique_auth: string[]
+  user_info: IUserInfo
+  logo: string
+  logo_square: string
+  version: string
+  newOrderAudioLink: string
 }

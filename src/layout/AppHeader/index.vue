@@ -11,7 +11,6 @@
     <UserInfo />
   </el-space>
 </template>
-
 <script lang="ts" setup>
 import ToggleSidebar from './ToggleSidebar.vue'
 import Breadcrumb from './Breadcrumb.vue'
