@@ -1,35 +1,31 @@
 <template>
-  <el-submenu
-    v-if="menu.children && menu.children.length"
-    :index="menu.path"
-  >
-    <template #title>
-      <app-icon
-        v-if="menu.icon"
-        :name="menu.icon"
-        color="rgba(255, 255, 255, 0.7)"
-      />
+  <div>
+    <!-- 有子节点 -->
+    <el-sub-menu
+      v-if="menu.children && menu.children.length"
+      :index="menu.path"
+    >
+      <template #title>
+        <el-icon><location /></el-icon>
+        <span>{{ menu.title }}</span>
+      </template>
+      <el-menu-item
+        v-for="subMenu in menu.children"
+        :key="subMenu.path"
+        index="1-1"
+      >
+        {{ subMenu.title }}
+      </el-menu-item>
+    </el-sub-menu>
+    <!-- 无子节点 -->
+    <el-menu-item
+      v-else
+      :index="menu.path"
+    >
+      <el-icon><icon-menu /></el-icon>
       <span>{{ menu.title }}</span>
-    </template>
-    <MenuItem
-      v-for="subMenu in menu.children"
-      :key="subMenu.path"
-      :menu="subMenu"
-    />
-  </el-submenu>
-  <el-menu-item
-    v-else
-    :index="menu.path"
-  >
-    <app-icon
-      v-if="menu.icon"
-      :name="menu.icon"
-      color="rgba(255, 255, 255, 0.7)"
-    />
-    <template #title>
-      <span>{{ menu.title }}</span>
-    </template>
-  </el-menu-item>
+    </el-menu-item>
+  </div>
 </template>
 
 <script lang="ts" setup>

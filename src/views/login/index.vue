@@ -125,6 +125,8 @@ const handleSubmit = async () => {
     token: data.token
   })
 
+  store.commit('setMenus', data.menus)
+
   let redirect = route.query.redirect || '/'
   if (typeof redirect !== 'string') {
     redirect = '/'

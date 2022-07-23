@@ -3,3 +3,4 @@
 // })
 
 export const USER = 'USER'
+export const MENU = 'MENU'
